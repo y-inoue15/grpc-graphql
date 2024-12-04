@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package posts;
+
+// Postデータモデル
+message Post {
+  string id = 1;
+  string title = 2;
+  int32 views = 3;
+}
+
+// サービス定義
+service PostsService {
+  rpc FindAll (Empty) returns (PostList);
+  rpc FindOne (PostId) returns (Post);
+}
+
+// リクエスト/レスポンスメッセージ
+message Empty {}
+
+message PostId {
+  string id = 1;
+}
+
+message PostList {
+  repeated Post posts = 1;
+}
